@@ -6,12 +6,19 @@
 
 import React, {PureComponent} from 'react'
 import {Link} from 'react-router-dom';
+import {DatePicker} from 'antd';
 
 
 export default class A extends PureComponent {
   render() {
     return (
-      <div> page A <Link to="/index">return</Link></div>
+      <div>
+        page A
+        <br/>
+        <DatePicker/>
+        <br/>
+        <Link to="/index">return</Link>
+      </div>
     )
   }
 }

@@ -125,7 +125,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize   : true,
+    // minimize   : true,
     splitChunks: {
       cacheGroups: {
         vendor: {   // 抽离第三方插件
