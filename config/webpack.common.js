@@ -9,13 +9,10 @@ const HtmlWebpackPlugin         = require('html-webpack-plugin');
 const CopyWebpackPlugin         = require('copy-webpack-plugin');
 const MiniExtractPlugin         = require('mini-css-extract-plugin');
 const DefinePlugin              = require('webpack/lib/DefinePlugin');
-const ProgressPlugin            = require('webpack/lib/ProgressPlugin');
+const ProgressPlugin            = require('progress-bar-webpack-plugin');
 const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
-const ManifestPlugin            = require('./webpack-manifest')
-const helper                    = require('./helper');
 const fs                        = require('fs');
 const root                      = fs.realpathSync(process.cwd());
-const stream                    = process.stdout;
 let version
 try {
   let pkg = JSON.parse(fs.readFileSync(root + '/package.json'))
@@ -171,17 +168,7 @@ module.exports = {
     new MiniExtractPlugin({
       filename: "style.css"
     }),
-    new ProgressPlugin((percentage, msg) => {
-      if (!percentage) return;
-      let progress = percentage * 100 | 0;
-      let sep      = new Array(20).fill(' ');
-      sep.fill(' ');
-      sep.fill('=', 0, percentage * 20 | 0);
-      msg = (`[${sep.join('')}] `).blue + (progress + '%  ').cyan + msg;
-      helper.clearLine();
-      stream.write(msg);
-    }),
-    new ManifestPlugin()
+    new ProgressPlugin(),
   ],
   
   // When importing a module whose path matches one of the following, just
