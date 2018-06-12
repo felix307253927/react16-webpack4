@@ -15,13 +15,10 @@ import {Route, Switch, HashRouter, Redirect} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Loading from './Loading';
 import App from './App';
+import Form from './Form';
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 export default class Routes extends PureComponent {
-  constructor(props) {
-    super(props)
-  }
-  
   
   /**
    * {location.key = location.pathname.split('/')[1] || "/"}
@@ -40,6 +37,7 @@ export default class Routes extends PureComponent {
                   <CSSTransition key={location.key} classNames="fade-in" timeout={300}>
                     <Switch location={location}>
                       <Route path="/index" component={App}/>
+                      <Route path="/form" component={Form}/>
                       <Route path="/a" component={Loadable({
                         loader() {
                           return import('./A')
